@@ -1,0 +1,19 @@
+runtime! ftplugin/man.vim
+" grep
+set number
+set noerrorbells
+autocmd BufWritePre * :%s/\s\+$//e
+function! InsertTabWrapper()
+	let col = col('.') - 1
+	if !col || getline('.')[col - 1] !~ '\k'
+		return "\<tab>"
+	else
+		return "\<c-p>"
+	endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap ` <tab>
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+inoremap { {<CR>}<Esc>ko
+inoremap <F2> #include "/nfs/2018/z/zstucke/headers.h"
