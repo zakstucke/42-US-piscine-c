@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/05 21:49:54 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/11 19:21:37 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_btree.h"
-
-t_btree		*btree_create_node(void *item)
+int	ft_sub(int first, int second)
 {
-	t_btree		*new;
+	return (first - second);
+}
 
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
-		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
+int	ft_add(int first, int second)
+{
+	return (first + second);
+}
+
+int	ft_mul(int first, int second)
+{
+	return (first * second);
+}
+
+int	ft_div(int first, int second)
+{
+	return (first / second);
+}
+
+int	ft_mod(int first, int second)
+{
+	return (first % second);
 }

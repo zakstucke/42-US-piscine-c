@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   btree_search_item.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/09 12:04:32 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/09 13:25:02 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_btree.h"
 
-t_btree		*btree_create_node(void *item)
+void	*btree_search_item(t_btree *root, void *data_ref,
+		int (*cmpf)(void *, void *))
 {
-	t_btree		*new;
-
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
+	if (root == 0 || data_ref == 0)
 		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
+	if (cmpf(root->item, data_ref) == 0)
+		return (root->item);
+	if (root->left != 0)
+		return (btree_search_item(root->left, data_ref, cmpf));
+	if (root->right != 0)
+		return (btree_search_item(root->right, data_ref, cmpf));
+	return (0);
 }

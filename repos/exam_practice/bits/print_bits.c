@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/09 16:34:19 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/09 17:00:26 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_btree.h"
+#include "unistd.h"
+#include "stdio.h"
 
-t_btree		*btree_create_node(void *item)
+int		reversed_bits(unsigned char octet)
 {
-	t_btree		*new;
+	int				i;
+	int				reversed;
 
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
-		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
+	reversed = 0;
+	i = 0;
+	while (i < 7)
+	{
+		reversed += octet & 1;
+		reversed = reversed << 1;
+		octet = octet >> 1;
+		i++;
+	}
+	return (reversed);
 }

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   btree_apply_suffix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/09 11:44:27 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/09 13:04:17 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_btree.h"
 
-t_btree		*btree_create_node(void *item)
+void	btree_apply_suffix(t_btree *root, void (*applyf)(void *))
 {
-	t_btree		*new;
-
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
-		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
+	if (root == 0)
+		return ;
+	btree_apply_suffix(root->left, applyf);
+	btree_apply_suffix(root->right, applyf);
+	applyf(root->item);
 }

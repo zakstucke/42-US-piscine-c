@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_board.h                                     :+:      :+:    :+:   */
+/*   btree_apply_infix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atokarev <atokarev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/03 20:58:58 by atokarev          #+#    #+#             */
-/*   Updated: 2018/11/03 22:56:10 by atokarev         ###   ########.fr       */
+/*   Created: 2018/11/09 11:37:00 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/09 13:03:39 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CREATE_BOARD_H
-# define CREATE_BOARD_H
+#include "ft_btree.h"
 
-# include <stdlib.h>
-
-int		**create_board(int argc, char **argv, int **board);
-int		*parse_line(char *line_read, int *line_write);
-
-#endif
+void	btree_apply_infix(t_btree *root, void (*applyf)(void *))
+{
+	if (root == 0)
+		return ;
+	btree_apply_infix(root->left, applyf);
+	applyf(root->item);
+	btree_apply_infix(root->right, applyf);
+}

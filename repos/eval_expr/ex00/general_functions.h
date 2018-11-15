@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   general_functions.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/05 22:47:13 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/11 19:15:25 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_btree.h"
+#ifndef GENERAL_FUNCTIONS_H
+# define GENERAL_FUNCTIONS_H
+# include <unistd.h>
 
-t_btree		*btree_create_node(void *item)
-{
-	t_btree		*new;
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+void	ft_putnbr(int nb);
+int		ft_putnbr_into_str(int nbr, char **str, int starting_index);
+int		ft_atoi(char *str);
 
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
-		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
-}
+#endif

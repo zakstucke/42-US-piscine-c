@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_create_node.c                                :+:      :+:    :+:   */
+/*   solver_functions.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zstucke <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 22:34:42 by zstucke           #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:48 by zstucke          ###   ########.fr       */
+/*   Created: 2018/11/11 19:03:52 by zstucke           #+#    #+#             */
+/*   Updated: 2018/11/11 19:34:16 by zstucke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_btree.h"
+#ifndef SOLVER_FUNCTIONS_H
+# define SOLVER_FUNCTIONS_H
 
-t_btree		*btree_create_node(void *item)
-{
-	t_btree		*new;
+int		next_num(char *str);
+int		last_num(char *str, int limit);
+void	replace(int current_index, char **str, int new_val, int x);
+int		evaluate_operator(char **str, int m);
+void	solve(char **str);
 
-	new = (t_btree*)malloc(sizeof(t_btree));
-	if (new == (0))
-		return (0);
-	new->item = item;
-	new->left = 0;
-	new->right = 0;
-	return (new);
-}
+#endif
